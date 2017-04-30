@@ -11,7 +11,7 @@ TEMPLATE_ENVIRONMENT = Environment(
 
 import argparse
 parser = argparse.ArgumentParser(description='This program was developed by Sooraj Antony to perform terminal level integration of the Template generator Jinja server')
-parser.add_argument('-r','--recipient',help='Recipient Full Name"', required=True)
+parser.add_argument('-r','--recipient',help='Recipient Full Name', required=True)
 args = parser.parse_args()
 ## show values ##
 recipientArg = args.recipient
