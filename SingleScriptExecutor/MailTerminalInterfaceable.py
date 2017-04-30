@@ -10,7 +10,7 @@ parser.add_argument('-s','--subject', help='Subject name eg: "Re: Hello"',requir
 parser.add_argument('-r','--recipient',help='Recipient Mail ID eg: "bleh@meh.com"', required=True)
 parser.add_argument('-m','--mailfile',help='Mail Content file location eg: "/path/to/location/of/mail/body.html"', required=True)
 args = parser.parse_args()
-## show values ## 
+## show values ##
 subject = args.subject
 recipient = args.recipient
 mailbody = args.mailfile

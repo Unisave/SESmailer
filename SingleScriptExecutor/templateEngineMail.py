@@ -9,6 +9,13 @@ TEMPLATE_ENVIRONMENT = Environment(
     loader=FileSystemLoader(os.path.join(PATH, 'templates')),
     trim_blocks=False)
 
+import argparse
+parser = argparse.ArgumentParser(description='This program was developed by Sooraj Antony to perform terminal level integration of the Template generator Jinja server')
+parser.add_argument('-r','--recipient',help='Recipient Full Name', required=True)
+args = parser.parse_args()
+## show values ##
+recipientArg = args.recipient
+
 
 def render_template(template_filename, context):
     return TEMPLATE_ENVIRONMENT.get_template(template_filename).render(context)
@@ -16,8 +23,8 @@ def render_template(template_filename, context):
 
 def create_index_html():
     fname = "output.html"
-    recipient = "Reciever"
-    sender = "Sender Host"
+    recipient = recipientArg
+    sender = "Hirrr.com"
     context = {
         'recipient': recipient,
         'sender': sender
