@@ -4,6 +4,18 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+import argparse
+parser = argparse.ArgumentParser(description='This program was developed by Sooraj Antony to perform terminal level integration of the Mail server')
+parser.add_argument('-s','--subject', help='Subject name eg: "Re: Hello"',required=True)
+parser.add_argument('-r','--recipient',help='Recipient Mail ID eg: "bleh@meh.com"', required=True)
+parser.add_argument('-m','--mailfile',help='Mail Content file location eg: "/path/to/location/of/mail/body.html"', required=True)
+args = parser.parse_args()
+## show values ##
+subject = args.subject
+recipient = args.recipient
+mailbody = args.mailfile
+
+
 # AWS Configuration settings for SES AWS Account
 with open('mailerConfig.json') as json_data_file:
 	maildata = json.load(json_data_file)
@@ -16,17 +28,19 @@ with open('mailerConfig.json') as json_data_file:
 # EMAIL_PORT variations for AWS = 25,465,587
 
 # Address book 
-with open('mailerContacts.json') as json_data_file:
+with open('mailerContacts.json') as json_data_file1:
+	mailCon = json.load(json_data_file1)
 	me = mailCon["emailcontact"]["me"]
-	you = mailCon["emailcontact"]["you"]
+	you = recipient
 
 # Message header content and data integration / compilation
-with open('mailerContents.json') as json_data_file:
+with open('mailerContents.json') as json_data_file2:
 	msg = MIMEMultipart('alternative')
-	msg['Subject'] = mailcontent["email"]["subject"]
+	mailcontent = json.load(json_data_file2)
+	msg['Subject'] = subject
 	msg['From'] = me
 	msg['To'] = you
-	contentName = mailcontent["email"]["contentFile"]
+	contentName = mailbody
 	html = open(contentName).read()
 # Message body content and data integration from JINJA or any other templating service as HTML file
 # html = open('<FILENAME/PATH to Jinja generated mail file.html>').read()
