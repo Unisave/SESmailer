@@ -1,5 +1,5 @@
 
-# Mailer Script for automated CRM using AWS SES API 
+# Mailer Script for automated CRM with mail generated using Jinja blueprint using AWS SES API for delivery 
 ## Abridged Algorithm
 ### Mail dependency libraries Import
 ##### 1. AWS Credentials and Network Configuration settings implementation for SES AWS Account. 
